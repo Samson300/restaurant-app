@@ -1,5 +1,7 @@
 // console.log("Looks like you have to be in the directory that has JS file to use Node");
 const express = require('express');
+const es6Renderer = require('express-es6-template-engine');
+
 const app = express();
 const http = require('http')
 const hostname = '127.0.0.1';
@@ -8,6 +10,22 @@ const port = 3000;
 
 const Restaurant = require('./models/restaurants');
 const User = require('./models/user');
+
+app.engine('html', es6Renderer);
+
+app.set('view engine', 'html');
+
+app.set('views', 'views');
+
+app.get('/login', (req, res) => {
+    res.render('login-form');
+});
+
+
+app.post('/login', (req, res) => {
+    console.log(req.body);
+})
+
 
 
 
